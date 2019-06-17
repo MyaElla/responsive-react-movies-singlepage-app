@@ -1,40 +1,50 @@
 import React, {Component} from "react";
-import axios from 'axios'
+// import axios from 'axios'
 import { Link } from 'react-router-dom'
-import Tile from './Tile'
 
-// const Home = () => {
-//     return (
-//         <div>
-//             {}
-//         </div>
-//     )
-// }
 
 class Home extends Component {
     state = {
-        shows: []
+        latestReleased: []
     }
+   
+    fetchSchedule = (show) => {
+        this.setState({ ...this.state, isFetching: true })
+
+            fetch('http://api.tvmaze.com/schedule/')
+                .then(response => response.json())
+                // .then(data => {
+                //     console.log("result", data.forEach(i => i.show)
+                //     )
+                // })
+                .then(result => {
+                    console.log("result", result)
+                    this.setState({
+                        latestReleased: result.slice(0, 18),
+                        isFetching: false
+                })})
+                
+                .catch(e => console.log(e));
+    }
+    
     componentDidMount() {
-        axios.get('http://api.tvmaze.com/schedule')
-            .then(res => {
-                console.log(res);
-                this.setState({
-                    shows: res.data.slice(0, 10)
-                });
-            })
+        this.fetchSchedule()
     }
 
     render() {
-        const { shows } = this.state
-        const showsList = shows.length ? (
-            shows.map(show => {
+        const { latestReleased } = this.state
+        console.log("latestReleased", latestReleased)
+        const showList = latestReleased.length ? (latestReleased.map(x => x.show)) : null
+        console.log("showList", showList)
+        const episodesList = latestReleased.length ? (
+            latestReleased.map(episode => {
                 return (
-                    <div className="movie card" key={show.id}>
+                    <div className="movie card" key={episode.id}>
                         <div className="tile-content">
-                          <Link to={'/' + show.id}>
+                            <Link to={'/' + episode.id}>
                             {/* <span className="card-title">{show.name}</span> */}
-                            <p>{show.name}</p>
+                            {/* <img src={show}></img> */}
+                                <p>{episode.name}</p>
                             </Link>
                         </div>
                     </div>
@@ -47,7 +57,7 @@ class Home extends Component {
         return (
             <div className="container">
                 <h4 className="center">Home</h4>
-                {showsList}
+                {episodesList}
             </div>
         )
     }
