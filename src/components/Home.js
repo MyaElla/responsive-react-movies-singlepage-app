@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 // import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Tile from './Tile'
 
 
 class Home extends Component {
@@ -41,12 +42,16 @@ class Home extends Component {
         const { latestReleased } = this.state
         console.log("latestReleased", latestReleased)
 
+        // const imageList = latestReleased.length ? (latestReleased.map(img => img.image.medium)) : null
+        // console.log("imageList", imageList)
+        
         const episodesList = latestReleased.length ? (
             latestReleased.map(episode => {
                 return (
                     <div className="movie card" key={episode.id}>
                         <div className="tile-content">
                             <Link to={'/' + episode.id}>
+                               
                             <span className="card-title">{episode.name}</span>
                             {/* <img src={episode.show.image.medium}></img> */}
                                 {/* <p>{episode.name}</p> */}
@@ -61,6 +66,7 @@ class Home extends Component {
 
         return (
             <div className="container home">
+                
                 {/* <h4 className="center">Home</h4> */}
                 {episodesList}
             </div>
