@@ -4,7 +4,6 @@ import Header from './components/Header'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
 import Tile from './components/Tile'
-// import './App.css';
 
 function App() {
   return (

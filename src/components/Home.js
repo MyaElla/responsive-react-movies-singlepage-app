@@ -14,13 +14,19 @@ class Home extends Component {
             fetch('http://api.tvmaze.com/schedule/')
                 .then(response => response.json())
                 // .then(data => {
-                //     console.log("result", data.forEach(i => i.show)
+                //      data.forEach(i => { console.log("SHOW", i.show) }
                 //     )
                 // })
-                .then(result => {
-                    console.log("result", result)
+            //     .then(data => { 
+            //         console.log("s", data)
+            //        return shows.map(i => i.show) 
+            // } 
+            //        )
+    
+                .then(data => {
+                    console.log("result fetch", data)
                     this.setState({
-                        latestReleased: result.slice(0, 18),
+                        latestReleased: data.map(x => x.show).slice(0, 18),
                         isFetching: false
                 })})
                 
@@ -34,17 +40,16 @@ class Home extends Component {
     render() {
         const { latestReleased } = this.state
         console.log("latestReleased", latestReleased)
-        const showList = latestReleased.length ? (latestReleased.map(x => x.show)) : null
-        console.log("showList", showList)
+
         const episodesList = latestReleased.length ? (
             latestReleased.map(episode => {
                 return (
                     <div className="movie card" key={episode.id}>
                         <div className="tile-content">
                             <Link to={'/' + episode.id}>
-                            {/* <span className="card-title">{show.name}</span> */}
-                            {/* <img src={show}></img> */}
-                                <p>{episode.name}</p>
+                            <span className="card-title">{episode.name}</span>
+                            {/* <img src={episode.show.image.medium}></img> */}
+                                {/* <p>{episode.name}</p> */}
                             </Link>
                         </div>
                     </div>
@@ -55,8 +60,8 @@ class Home extends Component {
             )
 
         return (
-            <div className="container">
-                <h4 className="center">Home</h4>
+            <div className="container home">
+                {/* <h4 className="center">Home</h4> */}
                 {episodesList}
             </div>
         )
