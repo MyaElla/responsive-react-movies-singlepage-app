@@ -22,15 +22,21 @@ class Tile extends Component {
     render() {
         console.log("props tile", this.props)
         const show = this.state.show ? (
-            <div className="post">
+            <div className="intro card">
                 {/* <h4 className="center">test</h4> */}
-                <h4>{this.state.show.id}</h4>
+                <img src={this.state.show.image.medium} />
+                <div className="show present">
+                    {/* <p>Rating {this.state.show.rating}</p> */}
+                    <h4>{this.state.show.name}</h4>
+                    <p>{this.state.show.summary}</p>
+                </div>
+               
             </div>
         ) : (
                 <div className="center">Loading post...</div>
             );
         return (
-            <div className="container">
+            <div className="container tile">
                 {/* <h4>blah</h4> */}
                 {show}
             </div>

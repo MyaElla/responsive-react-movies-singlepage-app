@@ -45,3 +45,20 @@ code {
   left: -100px;
   opacity: 0.6;
 }
+.tile{
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+  justify-content: space-evenly;
+  /* margin: 200px; */
+  background-color: aquamarine
+}
+.tile .intro {
+  display: flex;
+  /* flex-direction: row; */
+  background-color: bisque;
+  /* margin: 50px; */
+  width: 100%;
+  justify-content: space-around;
+
+}
