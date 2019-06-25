@@ -82,31 +82,6 @@ render() {
             <div className='section'>
                 <StyledH2>Last Added Shows</StyledH2>
                 <MoviesWrapper className='movie-list'>
-
-                    {/* <MovieThumbnail>
-                    <StyledThumbImg src={alvin} />
-                    Title 1
-                </MovieThumbnail>
-                <MovieThumbnail>
-                    <StyledThumbImg src={alvin} />
-                   Title 2
-                </MovieThumbnail>
-                <MovieThumbnail>
-                    <StyledThumbImg src={alvin} />
-                    Title 3
-                </MovieThumbnail>
-                <MovieThumbnail>
-                    <StyledThumbImg src={alvin} />
-                   Title 4
-                </MovieThumbnail>
-                <MovieThumbnail>
-                    <StyledThumbImg src={alvin} />
-                    Title 5
-                </MovieThumbnail>
-                <MovieThumbnail>
-                    <StyledThumbImg src={alvin} />
-                    Title 6
-                </MovieThumbnail> */}
                     {episodesList}
                 </MoviesWrapper>
             </div>
