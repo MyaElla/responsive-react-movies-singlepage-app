@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 const StyledWrapper = styled.div`
-  text-align: center;
+  color: #001a00;
+  /* text-align: center; */
   /* display: flex;
   flex: 1; */
   /* min-height: 20em; */
