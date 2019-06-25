@@ -29,6 +29,9 @@ render() {
                 <MovieThumbnail>Title 1</MovieThumbnail>
                 <MovieThumbnail>Title 2</MovieThumbnail>
                 <MovieThumbnail>Title 3</MovieThumbnail>
+                <MovieThumbnail>Title 4</MovieThumbnail>
+                <MovieThumbnail>Title 5</MovieThumbnail>
+                <MovieThumbnail>Title 6</MovieThumbnail>
             </MoviesWrapper>
         </StyledWrapper>
     )
