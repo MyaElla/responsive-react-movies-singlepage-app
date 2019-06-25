@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 
 const Header = styled.header`
-    min-height: 35vh;
+    min-height: calc(100vh - 500px);
     display: flex;
-    background-color: #cc00cc;
+    background-image: url(" "), linear-gradient(110deg, #f93d66, #6d47d9);
+    /* background-color: #cc00cc; */
     flex-direction: column;
     align-items: flex-start;
     /* align-content: flex-end; */
