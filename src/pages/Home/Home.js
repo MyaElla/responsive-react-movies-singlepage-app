@@ -22,7 +22,7 @@ class Home extends Component {
     fetchSchedule = (show) => {
         this.setState({ ...this.state, isFetching: true })
 
-        fetch('http://api.tvmaze.com/schedule?country=GB')
+        fetch('http://api.tvmaze.com/schedule?country=US')
             .then(response => response.json())
             // .then(data => {
             //      data.forEach(i => { console.log("SHOW", i.show) }
@@ -37,7 +37,7 @@ class Home extends Component {
             .then(data => {
                 console.log("result fetch", data)
                 this.setState({
-                    latestReleased: data.map(x => x.show),
+                    latestReleased: data.map(x => x.show).slice(0,18),
                     isFetching: false
                 })
             })
@@ -50,10 +50,14 @@ class Home extends Component {
 
 render() {
     const { latestReleased } = this.state
-    console.log("latestReleased 1", latestReleased[1])
+    console.log("latestReleased 13", latestReleased[13])
+
+    
 
     const episodesList = latestReleased.length ? (
         latestReleased.map(episode => {
+            const rating = (episode.rating === null) ? (<div>x</div>) : (<p>{episode.rating.average}</p>)
+            console.log("rating", rating.props)
             return (
                 <MovieThumbnail key={episode.id}>
                         <Link to={'/' + episode.id}>
@@ -61,7 +65,7 @@ render() {
 
                             <ThumbTitle>{episode.name}</ThumbTitle>
                             {/* <img src={episode.image.medium} /> */}
-                            {/* <p>{episode.name}</p> */}
+                        {rating}
                         </Link>
                 
                 </MovieThumbnail>

@@ -3,16 +3,19 @@ import axios from 'axios'
 
 class ShowDetails extends Component {
     state = {
-        show: null
+        show: null,
+        cast: null
     }
     componentDidMount() {
         let id = this.props.match.params.show_id;
         axios.get('http://api.tvmaze.com/shows/' + id)
             .then(res => {
                 this.setState({
-                    show: res.data
+                    showInfo: res.data,
+                    // cast: 
                 });
-                console.log("Show res", res);
+                console.log("Show res", res)
+                console.log("showInfo", res.data);
             });
         // fetch('http://api.tvmaze.com/shows/')
         //     .then(response => response.json())
@@ -20,19 +23,23 @@ class ShowDetails extends Component {
         //     .catch(e => console.log(e));
     }
     render() {
-        const { show } = this.state
-        console.log("props show", this.props)
-        console.log("state show", show)
-        const showDetails = show ? (
+        const { showInfo } = this.state
+        // console.log("props show", this.props)
+        console.log("state show2", showInfo)
+        // console.log("show crew", show.crew)
+
+        const showDetails = showInfo ? (
             <div className="intro card">
                 {/* <h4 className="center">test</h4> */}
-                <img src={show.image.medium} />
+                <img src={showInfo.image.medium} />
                 <div className="show present">
                     {/* <p>Rating {this.state.show.rating}</p> */}
-                    <h4>{show.name}</h4>
-                    <p>{show.summary}</p>
+                    <h4>{showInfo.name}</h4>
+                    <p>{showInfo.rating.average}</p>
+                    <p>{showInfo.summary}</p>
                     {/* <p>{this.state.show.rating}</p> */}
                 </div>
+                
 
             </div>
         ) : (
