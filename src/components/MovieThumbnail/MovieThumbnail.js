@@ -12,7 +12,7 @@ const MovieThumbnail = styled.div`
   align-items: center;
   align-content: center;
   justify-content: center;
-  /* font-size: calc(8px + 2vmin); */
+  font-size: calc(8px + 2vmin);
   color: #001a00;
 
     /* &:hover {

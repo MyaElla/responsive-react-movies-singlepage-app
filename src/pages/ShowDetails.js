@@ -12,7 +12,7 @@ class ShowDetails extends Component {
                 this.setState({
                     show: res.data
                 });
-                console.log("Tile", res);
+                console.log("Show res", res);
             });
         // fetch('http://api.tvmaze.com/shows/')
         //     .then(response => response.json())
@@ -20,8 +20,10 @@ class ShowDetails extends Component {
         //     .catch(e => console.log(e));
     }
     render() {
-        console.log("props tile", this.props)
-        const show = this.state.show ? (
+        const { show } = this.state
+        console.log("props show", this.props)
+        console.log("state show", show)
+        const showDetails = show ? (
             <div className="intro card">
                 {/* <h4 className="center">test</h4> */}
                 <img src={this.state.show.image.medium} />
@@ -29,6 +31,7 @@ class ShowDetails extends Component {
                     {/* <p>Rating {this.state.show.rating}</p> */}
                     <h4>{this.state.show.name}</h4>
                     <p>{this.state.show.summary}</p>
+                    {/* <p>{this.state.show.rating}</p> */}
                 </div>
 
             </div>
@@ -38,7 +41,7 @@ class ShowDetails extends Component {
         return (
             <div className="container tile">
                 {/* <h4>blah</h4> */}
-                {show}
+                {showDetails}
             </div>
         )
     }

@@ -50,7 +50,7 @@ class Home extends Component {
 
 render() {
     const { latestReleased } = this.state
-    console.log("latestReleased", latestReleased)
+    console.log("latestReleased 1", latestReleased[1])
 
     const episodesList = latestReleased.length ? (
         latestReleased.map(episode => {
