@@ -22,7 +22,7 @@ class Home extends Component {
     fetchSchedule = (show) => {
         this.setState({ ...this.state, isFetching: true })
 
-        fetch('http://api.tvmaze.com/schedule/')
+        fetch('http://api.tvmaze.com/schedule?country=GB')
             .then(response => response.json())
             // .then(data => {
             //      data.forEach(i => { console.log("SHOW", i.show) }
@@ -37,7 +37,7 @@ class Home extends Component {
             .then(data => {
                 console.log("result fetch", data)
                 this.setState({
-                    latestReleased: data.map(x => x.show).slice(0, 18),
+                    latestReleased: data.map(x => x.show),
                     isFetching: false
                 })
             })
@@ -57,10 +57,10 @@ render() {
             return (
                 <MovieThumbnail key={episode.id}>
                         <Link to={'/' + episode.id}>
-                            <StyledThumbImg src={alvin} />
+                        <StyledThumbImg src={episode.image.medium} />
 
                             <ThumbTitle>{episode.name}</ThumbTitle>
-                            {/* <img src={episode.show.image.medium} /> */}
+                            {/* <img src={episode.image.medium} /> */}
                             {/* <p>{episode.name}</p> */}
                         </Link>
                 

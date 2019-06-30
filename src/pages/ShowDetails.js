@@ -26,11 +26,11 @@ class ShowDetails extends Component {
         const showDetails = show ? (
             <div className="intro card">
                 {/* <h4 className="center">test</h4> */}
-                <img src={this.state.show.image.medium} />
+                <img src={show.image.medium} />
                 <div className="show present">
                     {/* <p>Rating {this.state.show.rating}</p> */}
-                    <h4>{this.state.show.name}</h4>
-                    <p>{this.state.show.summary}</p>
+                    <h4>{show.name}</h4>
+                    <p>{show.summary}</p>
                     {/* <p>{this.state.show.rating}</p> */}
                 </div>
 
