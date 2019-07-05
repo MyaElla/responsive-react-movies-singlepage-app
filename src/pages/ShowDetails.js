@@ -8,55 +8,51 @@ class ShowDetails extends Component {
         // cast: null
     }
 
-    // fetchShowContents() {
 
-    // }
 
     componentDidMount() {
 
         let id = this.props.match.params.show_id;
-        let urlShow = 'http://api.tvmaze.com/shows/' 
+        let baseShowUrl = 'http://api.tvmaze.com/shows/' + id
 
-         // let urlShow = 'http://api.tvmaze.com/shows/' + id
 
-        // let apiRequest1 = fetch(urlShow).then(function (response) {
-        //     return response.json()
-        // });
-        // let apiRequest2 = fetch(urlShow + '/cast').then(function (response) {
-        //     return response.json()
-        // });
-        // let combinedData = []
+        let apiRequest1 = fetch(baseShowUrl).then(response => response.json());
+        let apiRequest2 = fetch(`${baseShowUrl}/cast`).then(response => response.json());
+        let combinedData = []
 
 
 
-           // fetch('http://api.tvmaze.com/surlShowhows/')
+
+
+        Promise.all([apiRequest1, apiRequest2])
+            .then(function (values) {
+                combinedData[0] = values[0];
+                combinedData[1] = values[1];
+
+                console.log("apiRequest2", apiRequest2)
+                console.log("combinedData", combinedData)
+                return combinedData
+            })
+            .then(combinedData => this.setState({ showInfo: combinedData }))
+
+
+        // fetch('http://api.tvmaze.com/surlShowhows/')
         //     .then(response => response.json())
         //     .then(result => {console.log("showsres", result)})
         //     .catch(e => console.log(e));
 
-        // Promise.all([apiRequest1, apiRequest2])
-        //     .then(function (values) {
-        //         combinedData[0] = values[0];
-        //         combinedData[1] = values[1];
-
-        //         console.log("apiRequest2", apiRequest2)
-        //         console.log("combinedData", combinedData)
-        //         return combinedData
-        //     })
-        //     .then(combinedData => this.setState({ showInfo: combinedData }))
-
-        fetch(`${urlShow}${id}/cast`)
-            .then(response => response.json())
+        // fetch(baseShowUrl)
+        //     .then(response => response.json())
             // .then(data => {
             //     // Here's a list of repos!
-            //     console.log(data)
+            //     console.log("Response Data->", data);
             // });
-            .then(data => this.setState({ showInfo: data.slice(0, 18) }))
-            .catch(error => {
-                console.log('Request failed', error)
-            })
+            // .then(data => this.setState({ showInfo: data }))
+            // .catch(error => {
+            //     console.log('Request failed', error)
+            // }
 
-        // axios.get(`${urlShow}${id}/cast`)
+        // axios.get(baseShowUrl)
         //     .then(res => {
         //         this.setState({
         //             showInfo: res.data,
