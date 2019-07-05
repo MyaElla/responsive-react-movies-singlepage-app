@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 // import axios from 'axios'
+import StyledCastImgCircle from '../components/StyledCastImgCircle'
 import alvin from '../assets/alvin.jpg'
 
 export default class Cast extends Component {
@@ -11,10 +12,9 @@ export default class Cast extends Component {
         if (this.props.listCast) {
             rowCast = this.props.listCast.map(castItem => {
                 console.log("castItem>>>", castItem)
-                const image = castItem.person.image ? <img src={castItem.person.image.medium} alt="" /> : <img src={alvin} alt="alvin"/>
+                const image = castItem.person.image ? <StyledCastImgCircle src={castItem.person.image.medium} alt="" className="cast-face" /> : <StyledCastImgCircle src={alvin} alt="alvin"/>
                 return <li key={castItem.id}>
-                    {image}
-                    {castItem.person.name}
+                    <span>{image}</span>{castItem.person.name}
                 </li>
             });
         }
