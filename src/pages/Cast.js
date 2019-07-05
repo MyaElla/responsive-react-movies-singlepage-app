@@ -1,34 +1,34 @@
 import React, { Component } from 'react'
 // import axios from 'axios'
+import alvin from '../assets/alvin.jpg'
 
-class Cast extends Component {
-    state = {
-        castShow: null
-    }
-
-    componentDidUpdate(prevProps) {
-        // Typical usage (don't forget to compare props):
-        if (this.state.id === prevProps.id) {
-            console.log("componet did update state.", this.state)
-            this.fetchData(this.props.showID);
-        }
-    }
+export default class Cast extends Component {
     render() {
-        // console.log("this.props.STATE", this.props)
-        return (
-           <div>
-               x
-                {/* {data.map((show) => (
+        let rowCast
+        // let image = this.props.listCast.person.image ? <img src={this.props.listCast.person.image.medium} alt="" /> : <span className="circle">yyy</span>
 
-                        <ul>
-                            {tab.articles.map((itemData) => (
-                                <p key={show.index}>{itemData} </p>
-                            ))}
-                        </ul>
-                ))} */}
-           </div>
-        )
+        console.log("listCast--", this.props.listCast)
+        if (this.props.listCast) {
+            rowCast = this.props.listCast.map(castItem => {
+                console.log("castItem>>>", castItem)
+                const image = castItem.person.image ? <img src={castItem.person.image.medium} alt="" /> : <img src={alvin} alt="alvin"/>
+                return <li key={castItem.id}>
+                    {image}
+                    {castItem.person.name}
+                </li>
+            });
+        }
+           
+        
+
+        return (
+            <div>
+                <ul>
+                    {rowCast}
+                </ul>
+            </div>
+        );
     }
+ 
 }
 
-export default Cast

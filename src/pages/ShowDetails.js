@@ -5,7 +5,7 @@ import Cast from './Cast'
 class ShowDetails extends Component {
     state = {
         showInfo: null,
-        // cast: null
+        castList: null
     }
 
 
@@ -27,13 +27,19 @@ class ShowDetails extends Component {
         Promise.all([apiRequest1, apiRequest2])
             .then(function (values) {
                 combinedData[0] = values[0];
-                combinedData[1] = values[1];
+                combinedData[1] = values[1].slice(0, 5);
 
                 console.log("apiRequest2", apiRequest2)
                 console.log("combinedData", combinedData)
                 return combinedData
             })
-            .then(combinedData => this.setState({ showInfo: combinedData }))
+            .then(combinedData => this.setState({ 
+                showInfo: combinedData[0],
+                castList: combinedData[1]
+             }))
+            // .catch(error => {
+            //     console.log('Request failed', error)
+            // }
 
 
         // fetch('http://api.tvmaze.com/surlShowhows/')
@@ -64,22 +70,22 @@ class ShowDetails extends Component {
      
     }
     render() {
-        const { showInfo } = this.state
+        const { showInfo, castList } = this.state
         console.log("state show2", showInfo)
 
         const showDetails = showInfo ? (
             <div className="intro card">
                 {/* <h4 className="center">test</h4> */}
-                {/* <img src={showInfo.image.medium} /> */}
+                {/* <img src={showInfo[0].image.medium} alt=""/> */}
                 <div className="show present">
                     {/* <p>Rating {this.state.show.rating}</p> */}
                     <h4>{showInfo.name}</h4>
-                    {/* <p>{showInfo.rating.average}</p> */}
+                    <p>{showInfo.rating.average}</p>
                     <p>{showInfo.summary}</p>
                     {/* <p>{this.state.show.rating}</p> */}
                 </div>
                 <h3>Cast</h3>
-                <Cast />
+                <Cast listCast={castList} />
                 
 
             </div>
