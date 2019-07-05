@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 // import axios from 'axios'
+// import alvin from '../assets/alvin.jpg'
+// import StyledThumbImg from '../components/StyledThumbImg'
 import Cast from './Cast'
 
 class ShowDetails extends Component {
@@ -72,17 +74,21 @@ class ShowDetails extends Component {
     render() {
         const { showInfo, castList } = this.state
         console.log("state show2", showInfo)
+        // console.log("showInfo.rating.average", this.state.rating.average)
+        // const imageShow = showInfo.image ? <StyledThumbImg src={showInfo.image.medium} alt="" /> : <StyledThumbImg src={alvin} alt="alvin" />
+        const rating = showInfo ? <p>{showInfo.rating.average}</p> : 3333
 
         const showDetails = showInfo ? (
             <div className="intro card">
                 {/* <h4 className="center">test</h4> */}
-                {/* <img src={showInfo[0].image.medium} alt=""/> */}
+                <img src={showInfo.image.medium} alt=""/>
+                {/* {imageShow} */}
                 <div className="show present">
-                    {/* <p>Rating {this.state.show.rating}</p> */}
                     <h4>{showInfo.name}</h4>
-                    <p>{showInfo.rating.average}</p>
+                    {/* <p>{showInfo.rating.average}</p> */}
+                    <p>{rating} || NOT</p>
                     <p>{showInfo.summary}</p>
-                    {/* <p>{this.state.show.rating}</p> */}
+                    
                 </div>
                 <h3>Cast</h3>
                 <Cast listCast={castList} />
