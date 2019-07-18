@@ -9,7 +9,7 @@ import StyledH2 from '../../components/StyledH2'
 import ThumbTitle from '../../components/ThumbTitle'
 
 import StyledThumbImg from '../../components/StyledThumbImg'
-import alvin from '../../assets/alvin.jpg'
+// import alvin from '../../assets/alvin.jpg'
 
 
 
@@ -22,7 +22,7 @@ class Home extends Component {
     fetchSchedule = (show) => {
         this.setState({ ...this.state, isFetching: true })
 
-        fetch('http://api.tvmaze.com/schedule?country=US')
+        fetch('http://api.tvmaze.com/schedule?country=GB')
             .then(response => response.json())
             // .then(data => {
             //      data.forEach(i => { console.log("SHOW", i.show) }
