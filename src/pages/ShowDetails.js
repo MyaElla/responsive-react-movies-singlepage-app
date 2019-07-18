@@ -73,14 +73,13 @@ class ShowDetails extends Component {
     }
     render() {
         const { showInfo, castList } = this.state
-        console.log("state show2", showInfo)
+        console.log("showInfo RENDER", showInfo)
         // console.log("showInfo.rating.average", this.state.rating.average)
         // const imageShow = showInfo.image ? <StyledThumbImg src={showInfo.image.medium} alt="" /> : <StyledThumbImg src={alvin} alt="alvin" />
         const rating = showInfo ? <p>{showInfo.rating.average}</p> : 3333
 
         const showDetails = showInfo ? (
             <div className="intro card">
-                {/* <h4 className="center">test</h4> */}
                 <img src={showInfo.image.medium} alt=""/>
                 {/* {imageShow} */}
                 <div className="show present">
@@ -100,7 +99,6 @@ class ShowDetails extends Component {
             );
         return (
             <div className="container tile">
-                {/* <h4>blah</h4> */}
                 {showDetails}
             </div>
         )
