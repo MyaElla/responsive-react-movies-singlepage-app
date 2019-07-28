@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-// import axios from 'axios'
-// import thumb from '../assets/thumb.png'
-// import StyledThumbImg from '../components/StyledThumbImg'
+import thumb from '../assets/thumb.png'
+import StyledThumbImg from '../components/StyledThumbImg'
 import Cast from './Cast'
 import ShowMore from './ShowMore'
 import RatingStars from './RatingStars'
@@ -44,21 +43,25 @@ class ShowDetails extends Component {
              }))
   
     }
-    getImage = () => {
+    getImage = (image) => {
+        if (this.state.showInfo.image) {
+            return  image = this.state.showInfo.image.medium
+        } else {
+            return thumb
+        }
 
     }
 
     render() {
         const { showInfo, castList } = this.state
         console.log("showInfo RENDER", showInfo)
-        // const imageShow = showInfo.image ? <StyledThumbImg src={showInfo.image.medium} alt="" /> : <StyledThumbImg src={alvin} alt="alvin" />
-        // const thumbImg = showInfo.image ? showInfo.image.medium : thumb
+        // const thumbImg = showInfo ? showInfo.image[0] : thumb
 
         const showDetails = showInfo ? (
-            // console.log("showInfo IMAGE", showInfo.image)
             <div className="intro card">
-                <img src={showInfo.image.medium} alt=""/>
-                {/* {imageShow} */}
+                {/* <img src={showInfo.image.medium} alt=""/> */}
+                    <StyledThumbImg src={this.getImage()} />
+                    {/* <StyledThumbImg src={thumbImg} /> */}
                 <div className="show present">
                     <h4>{showInfo.name}</h4>
                     <RatingStars rating={showInfo.rating} />
@@ -66,13 +69,12 @@ class ShowDetails extends Component {
                     
                 </div>
                 <ShowMore details={showInfo} />
-                <Cast listCast={castList} />
-                
+                <Cast listCast={castList} />  
 
             </div>
         ) : (
-                <div className="center">Loading post...</div>
-            );
+            <div className="center">Loading post...</div>
+            ) 
         return (
             <div className="container tile">
                 {showDetails}
