@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 // import thumb from '../assets/thumb.png'
 // import StyledThumbImg from '../components/StyledThumbImg'
 import Cast from './Cast'
+import ShowMore from './ShowMore'
 import RatingStars from './RatingStars'
 
 
@@ -64,8 +65,8 @@ class ShowDetails extends Component {
                     <p>{showInfo.summary}</p>
                     
                 </div>
-                <h3>Cast</h3>
-                <Cast listCast={castList} />
+                <ShowMore details={showInfo} />
+                {/* <Cast listCast={castList} /> */}
                 
 
             </div>
