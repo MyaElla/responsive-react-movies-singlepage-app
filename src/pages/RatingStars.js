@@ -1,10 +1,14 @@
 import React from "react";
+import StyledScore from '../components/StyledScore'
 
 const RatingStars = ({ rating }) => {
-    const score = (rating.average === null) ? 'No rating yet, waiting for more votes' : rating.average
+    const score = (rating.average === null) ? 
+        <StyledScore italic subtle>No rating yet</StyledScore> 
+        : 
+        <StyledScore>{rating.average}</StyledScore>
 
     return (
-        <p>{score}</p>
+        <div>{score}</div>
     )
 }
 

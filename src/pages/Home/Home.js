@@ -7,6 +7,7 @@ import MovieThumbnail from '../../components/MovieThumbnail/MovieThumbnail'
 import StyledH1 from '../../components/StyledH1'
 import StyledH2 from '../../components/StyledH2'
 import ThumbTitle from '../../components/ThumbTitle'
+import RatingStars from '../RatingStars'
 
 import StyledThumbImg from '../../components/StyledThumbImg'
 import thumb from '../../assets/thumb.png'
@@ -56,8 +57,6 @@ render() {
 
     const episodesList = latestReleased.length ? (
         latestReleased.map(episode => {
-            const rating = (episode.rating === null) ? (<div>x</div>) : (<p>{episode.rating.average}</p>)
-            // console.log("rating", rating.props)
             // console.log("episode", episode.image)
             const thumbImg = episode.image ? episode.image.medium : thumb
             return (
@@ -67,7 +66,7 @@ render() {
 
                             <ThumbTitle>{episode.name}</ThumbTitle>
                             {/* <img src={episode.image.medium} /> */}
-                        {rating}
+                        <RatingStars rating={episode.rating} />
                         </Link>
                 
                 </MovieThumbnail>
