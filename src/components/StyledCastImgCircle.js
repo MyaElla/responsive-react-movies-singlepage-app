@@ -8,7 +8,8 @@ const StyledCastImgCircle = styled.img`
     /* align-items: center; */
     align-content: flex-start;
     justify-content: center;
-    /* margin: 3em; */
+    /* margin-right: 20px; */
+    margin: 5px;
     border-radius: 20px;
   /* animation: App-logo-spin infinite 20s linear;
   height: 40vmin; */
