@@ -1,19 +1,25 @@
 import React, { Component } from 'react'
-// import axios from 'axios'
 import StyledCastImgCircle from '../components/StyledCastImgCircle'
+import StyledList from '../components/StyledList'
+import StyledListItem from '../components/StyledListItem'
+import StyledText from '../components/StyledText'
+
 import alvin from '../assets/alvin.jpg'
 
 export default class Cast extends Component {
     render() {
         let rowCast
-        // let image = this.props.listCast.person.image ? <img src={this.props.listCast.person.image.medium} alt="" /> : <span className="circle">yyy</span>
+        console.log("listCast", this.props.listCast)
 
         if (this.props.listCast) {
             rowCast = this.props.listCast.map(castItem => {
-                const image = castItem.person.image ? <StyledCastImgCircle src={castItem.person.image.medium} alt="" className="cast-face" /> : <StyledCastImgCircle src={alvin} alt="alvin"/>
-                return <li key={castItem.id}>
-                    <span>{image}</span>{castItem.person.name}
-                </li>
+                const image = castItem.person.image ? <StyledCastImgCircle src={castItem.person.image.medium} alt="" /> : <StyledCastImgCircle src={alvin} alt="alvin"/>
+                return (
+                <StyledListItem key={castItem.id}>
+                        <span>{image}</span>{castItem.person.name}
+                        <StyledText subtle >{castItem.character.name}</StyledText>
+                </StyledListItem>)
+                
             });
         }
            
@@ -21,9 +27,10 @@ export default class Cast extends Component {
 
         return (
             <div>
-                <ul>
+                <h3>Starring</h3>
+                <StyledList>
                     {rowCast}
-                </ul>
+                </StyledList>
             </div>
         );
     }

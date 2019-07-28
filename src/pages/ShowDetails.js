@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-// import axios from 'axios'
-// import alvin from '../assets/alvin.jpg'
-// import StyledThumbImg from '../components/StyledThumbImg'
+import thumb from '../assets/thumb.png'
+import StyledThumbImg from '../components/StyledThumbImg'
 import Cast from './Cast'
+import ShowMore from './ShowMore'
+import RatingStars from './RatingStars'
+
 
 class ShowDetails extends Component {
     state = {
         showInfo: null,
-        castList: null
+        castList: null,
     }
 
 
@@ -39,64 +41,40 @@ class ShowDetails extends Component {
                 showInfo: combinedData[0],
                 castList: combinedData[1]
              }))
-            // .catch(error => {
-            //     console.log('Request failed', error)
-            // }
-
-
-        // fetch('http://api.tvmaze.com/surlShowhows/')
-        //     .then(response => response.json())
-        //     .then(result => {console.log("showsres", result)})
-        //     .catch(e => console.log(e));
-
-        // fetch(baseShowUrl)
-        //     .then(response => response.json())
-            // .then(data => {
-            //     // Here's a list of repos!
-            //     console.log("Response Data->", data);
-            // });
-            // .then(data => this.setState({ showInfo: data }))
-            // .catch(error => {
-            //     console.log('Request failed', error)
-            // }
-
-        // axios.get(baseShowUrl)
-        //     .then(res => {
-        //         this.setState({
-        //             showInfo: res.data,
-                
-        //         });
-        //         console.log("Full res", res)
-        //         console.log("Response Data->", res.data);
-        //     });
-     
+  
     }
+    getImage = (image) => {
+        if (this.state.showInfo.image) {
+            return  image = this.state.showInfo.image.medium
+        } else {
+            return thumb
+        }
+
+    }
+
     render() {
         const { showInfo, castList } = this.state
         console.log("showInfo RENDER", showInfo)
-        // console.log("showInfo.rating.average", this.state.rating.average)
-        // const imageShow = showInfo.image ? <StyledThumbImg src={showInfo.image.medium} alt="" /> : <StyledThumbImg src={alvin} alt="alvin" />
-        const rating = showInfo ? <p>{showInfo.rating.average}</p> : 3333
+        // const thumbImg = showInfo ? showInfo.image[0] : thumb
 
         const showDetails = showInfo ? (
             <div className="intro card">
-                <img src={showInfo.image.medium} alt=""/>
-                {/* {imageShow} */}
+                {/* <img src={showInfo.image.medium} alt=""/> */}
+                    <StyledThumbImg src={this.getImage()} />
+                    {/* <StyledThumbImg src={thumbImg} /> */}
                 <div className="show present">
                     <h4>{showInfo.name}</h4>
-                    {/* <p>{showInfo.rating.average}</p> */}
-                    <p>{rating} || NOT</p>
+                    <RatingStars rating={showInfo.rating} />
                     <p>{showInfo.summary}</p>
                     
                 </div>
-                <h3>Cast</h3>
-                <Cast listCast={castList} />
-                
+                <ShowMore details={showInfo} />
+                <Cast listCast={castList} />  
 
             </div>
         ) : (
-                <div className="center">Loading post...</div>
-            );
+            <div className="center">Loading post...</div>
+            ) 
         return (
             <div className="container tile">
                 {showDetails}
