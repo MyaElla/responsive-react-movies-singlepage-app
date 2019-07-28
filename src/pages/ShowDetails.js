@@ -66,7 +66,7 @@ class ShowDetails extends Component {
                     
                 </div>
                 <ShowMore details={showInfo} />
-                {/* <Cast listCast={castList} /> */}
+                <Cast listCast={castList} />
                 
 
             </div>
