@@ -9,7 +9,7 @@ import StyledH2 from '../../components/StyledH2'
 import ThumbTitle from '../../components/ThumbTitle'
 
 import StyledThumbImg from '../../components/StyledThumbImg'
-// import alvin from '../../assets/alvin.jpg'
+import thumb from '../../assets/thumb.png'
 
 
 
@@ -57,11 +57,13 @@ render() {
     const episodesList = latestReleased.length ? (
         latestReleased.map(episode => {
             const rating = (episode.rating === null) ? (<div>x</div>) : (<p>{episode.rating.average}</p>)
-            console.log("rating", rating.props)
+            // console.log("rating", rating.props)
+            // console.log("episode", episode.image)
+            const thumbImg = episode.image ? episode.image.medium : thumb
             return (
                 <MovieThumbnail key={episode.id}>
                         <Link to={'/' + episode.id}>
-                        <StyledThumbImg src={episode.image.medium} />
+                        <StyledThumbImg src={thumbImg} />
 
                             <ThumbTitle>{episode.name}</ThumbTitle>
                             {/* <img src={episode.image.medium} /> */}
