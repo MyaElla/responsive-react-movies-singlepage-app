@@ -18,11 +18,12 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: "module"
   },
-  plugins: ["prettier", "react", "jsx-a11y"],
+  plugins: ["react", "jsx-a11y", "prettier"],
   rules: {
     // "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
     // "comma-dangle": [2], // disallow trailing commas
-    // "semi": ["error", "never"], // disallow semicolons
+    // semi: ["error", "never"], // disallow semicolons
+     "prettier/prettier": "error",
     // "no-unexpected-multiline": 2, // detect exceptions where a semicolon is required to prevent two lines being interpreted as one expression
     // "no-console": 0, // console logs are stripped out on production build, allow for development
     // "no-plusplus": [2, { "allowForLoopAfterthoughts": true }], // allow ++ in for loops
@@ -38,7 +39,7 @@ module.exports = {
     // "react/no-did-update-set-state": 1, // provide warning rather than error as reshaping code in currently existing files is optional
     // "no-unused-expressions": [2, { "allowTernary": true }], // we often want to perform a check on the result of a promise, allow ternary for this
     // "react/jsx-no-bind": 1, // provide warning rather than error as reshaping code in currently existing files is optional
-    "react/jsx-filename-extension": 0 // don't restrict jsx to jsx files
+    "react/jsx-filename-extension": 0, // don't restrict jsx to jsx files
     // "react/no-unused-prop-types": [1, { "skipShapeProps": true }],
     // "react/no-multi-comp": 1, // provide warning rather than error as reshaping code in currently existing files is optional
     // "import/imports-first": 0, // don't require absolute imports to come before relative imports
