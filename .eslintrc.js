@@ -25,7 +25,7 @@ module.exports = {
     // semi: ["error", "never"], // disallow semicolons
      "prettier/prettier": "error",
     // "no-unexpected-multiline": 2, // detect exceptions where a semicolon is required to prevent two lines being interpreted as one expression
-    // "no-console": 0, // console logs are stripped out on production build, allow for development
+    "no-console": 0, // console logs are stripped out on production build, allow for development
     // "no-plusplus": [2, { "allowForLoopAfterthoughts": true }], // allow ++ in for loops
     // "import/no-unresolved": 0, // no need for error on unresolved imports, console displays error anyway and this rule does not work with babelrc imports from root of app
     // "import/extensions": 0, // do not require extensions for imports

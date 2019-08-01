@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../../components/Header/Header'
 import MoviesWrapper from '../../components/MoviesWrapper/MoviesWrapper'
@@ -12,89 +12,70 @@ import RatingStars from '../RatingStars'
 import StyledThumbImg from '../../components/StyledThumbImg'
 import thumb from '../../assets/thumb.png'
 
-
-
 class Home extends Component {
-    state = {
-        latestReleased: []
+  constructor(props) {
+    super(props)
+    this.state = {
+      latestReleased: [],
     }
+  }
 
+  componentDidMount() {
+    this.fetchSchedule()
+  }
 
-    fetchSchedule = (show) => {
-        this.setState({ ...this.state, isFetching: true })
+  fetchSchedule() {
+    fetch('http://api.tvmaze.com/schedule?country=GB')
+      .then(response => response.json())
 
-        fetch('http://api.tvmaze.com/schedule?country=GB')
-            .then(response => response.json())
-            // .then(data => {
-            //      data.forEach(i => { console.log("SHOW", i.show) }
-            //     )
-            // })
-            //     .then(data => { 
-            //         console.log("s", data)
-            //        return shows.map(i => i.show) 
-            // } 
-            //        )
+      .then(data => {
+        console.log('result fetch', data)
+        this.setState({
+          latestReleased: data.map(x => x.show).slice(0, 18),
+        })
+      })
 
-            .then(data => {
-                console.log("result fetch", data)
-                this.setState({
-                    latestReleased: data.map(x => x.show).slice(0,18),
-                    isFetching: false
-                })
-            })
+      .catch(e => console.log(e))
+  }
 
-            .catch(e => console.log(e));
-    }
-    componentDidMount() {
-        this.fetchSchedule()
-    }
-
-render() {
+  render() {
     const { latestReleased } = this.state
-    console.log("latestReleased 13", latestReleased[13])
-
-    
+    console.log('latestReleased 13', latestReleased[13])
 
     const episodesList = latestReleased.length ? (
-        latestReleased.map(episode => {
-            // console.log("episode", episode.image)
-            const thumbImg = episode.image ? episode.image.medium : thumb
-            return (
-                <MovieThumbnail key={episode.id}>
-                        <Link to={'/' + episode.id}>
-                        <StyledThumbImg src={thumbImg} />
+      latestReleased.map(episode => {
+        // console.log("episode", episode.image)
+        const thumbImg = episode.image ? episode.image.medium : thumb
+        return (
+          <MovieThumbnail key={episode.id}>
+            <Link to={`/${episode.id}`}>
+              <StyledThumbImg src={thumbImg} />
 
-                            <ThumbTitle>{episode.name}</ThumbTitle>
-                            {/* <img src={episode.image.medium} /> */}
-                        <RatingStars rating={episode.rating} />
-                        </Link>
-                
-                </MovieThumbnail>
-
-            )
-        })
-    ) : (
-            <div className="center">No shows to show</div>
+              <ThumbTitle>{episode.name}</ThumbTitle>
+              {/* <img src={episode.image.medium} /> */}
+              <RatingStars rating={episode.rating} />
+            </Link>
+          </MovieThumbnail>
         )
+      })
+    ) : (
+      <div className="center">No shows to show</div>
+    )
 
     return (
-        <StyledWrapper>
-            <Header className="App-header">
-                {/* <img src={logo} className="App-logo" alt="logo" /> */}
-                <StyledH1>TV Bland</StyledH1>
-                <p>This is my Header description</p>
-            </Header>
-            <div className='section'>
-                <StyledH2>Last Added Shows</StyledH2>
-                <MoviesWrapper className='movie-list'>
-                    {episodesList}
-                </MoviesWrapper>
-            </div>
-            
-        </StyledWrapper>
+      <StyledWrapper>
+        <Header className="App-header">
+          {/* <img src={logo} className="App-logo" alt="logo" /> */}
+          <StyledH1>TV Bland</StyledH1>
+          <p>This is my Header description</p>
+        </Header>
+        <div className="section">
+          <StyledH2>Last Added Shows</StyledH2>
+          <MoviesWrapper className="movie-list">{episodesList}</MoviesWrapper>
+        </div>
+      </StyledWrapper>
     )
-    }
+  }
 }
 
-
-export default Home;
+export default Home
