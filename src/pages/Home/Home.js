@@ -10,7 +10,7 @@ import ThumbTitle from '../../components/ThumbTitle'
 import RatingStars from '../RatingStars'
 
 import StyledThumbImg from '../../components/StyledThumbImg'
-import thumb from '../../assets/thumb.png'
+import thumb from '../../assets/thumb.jpg'
 
 class Home extends Component {
   constructor(props) {

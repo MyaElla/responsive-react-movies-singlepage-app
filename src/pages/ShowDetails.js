@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import thumb from '../assets/thumb.png'
+import thumb from '../assets/thumb.jpg'
 import StyledThumbImg from '../components/StyledThumbImg'
 import Cast from './Cast'
 import ShowMore from './ShowMore'

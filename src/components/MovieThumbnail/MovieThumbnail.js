@@ -10,7 +10,7 @@ const MovieThumbnail = styled.div`
   border: 2px solid #ff0066;
   padding: 0.2em;
   max-height: 30em;
-  align-items: center;
+  // align-items: center;
   // align-content: center;
   justify-content: center;
   color: #001a00;
