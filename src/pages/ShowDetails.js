@@ -41,16 +41,6 @@ class ShowDetails extends Component {
       )
   }
 
-  // getImage = showInfo => {
-  //   if (showInfo.image) {
-  //     console.log('>>!!showInfo.image>>', showInfo.image)
-  //     const image = showInfo.image.medium
-  //     return image
-  //   } else {
-  //     return thumb
-  //   }
-  // }
-
   render() {
     const { showInfo, castList } = this.state
     console.log('showInfo RENDER', showInfo)
@@ -58,9 +48,11 @@ class ShowDetails extends Component {
 
     const showDetails = showInfo ? (
       <div className="intro card">
-        <img src={showInfo.image.medium} alt="" />
-        {/* <StyledThumbImg src={this.getImage()} /> */}
-        {/* <StyledThumbImg src={thumbImg} /> */}
+        {showInfo.image ? (
+          <StyledThumbImg src={showInfo.image.medium} />
+        ) : (
+          <StyledThumbImg src={thumb} />
+        )}
         <div className="show present">
           <h4>{showInfo.name}</h4>
           <RatingStars rating={showInfo.rating} />
