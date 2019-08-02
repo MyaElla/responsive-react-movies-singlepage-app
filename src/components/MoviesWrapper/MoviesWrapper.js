@@ -9,10 +9,9 @@ const MoviesWrapper = styled.div`
   @media all and (min-width: 700px) {
     grid-template-columns: repeat(6, 1fr);
   }
-  
 
   @media all and (max-width: 700px) {
-  grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   grid-gap: 1em;
   background: #ffffff;

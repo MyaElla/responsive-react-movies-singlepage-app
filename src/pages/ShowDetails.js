@@ -44,7 +44,6 @@ class ShowDetails extends Component {
   render() {
     const { showInfo, castList } = this.state
     console.log('showInfo RENDER', showInfo)
-    // const thumbImg = showInfo ? showInfo.image[0] : thumb
 
     const showDetails = showInfo ? (
       <div className="intro card">

@@ -5,7 +5,7 @@ import StyledListItem from '../components/StyledListItem'
 import StyledText from '../components/StyledText'
 
 const ShowMore = ({ details }) => {
-  console.log('showInfoMORE', details)
+  console.log('showMORE details: ', details)
 
   const rowNetwork = details ? (
     <StyledListItem>

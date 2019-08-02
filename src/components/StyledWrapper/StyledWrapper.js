@@ -2,9 +2,9 @@ import styled from 'styled-components'
 
 const StyledWrapper = styled.div`
   color: #001a00;
-  /* text-align: center; */
-  /* display: flex;
-  flex: 1; */
+  // display: flex;
+  // flex: 1;
+  // flex-direction: column;
   /* min-height: 20em; */
   /* background: #e6ffe6; */
   border: solid 0.2em #003300;

@@ -44,7 +44,6 @@ class Home extends Component {
 
     const episodesList = latestReleased.length ? (
       latestReleased.map(episode => {
-        // console.log("episode", episode.image)
         const thumbImg = episode.image ? episode.image.medium : thumb
         return (
           <MovieThumbnail key={episode.id}>
@@ -52,7 +51,6 @@ class Home extends Component {
               <StyledThumbImg src={thumbImg} />
 
               <ThumbTitle>{episode.name}</ThumbTitle>
-              {/* <img src={episode.image.medium} /> */}
               <RatingStars rating={episode.rating} />
             </Link>
           </MovieThumbnail>
@@ -65,7 +63,6 @@ class Home extends Component {
     return (
       <StyledWrapper>
         <Header className="App-header">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <StyledH1>TV Bland</StyledH1>
           <p>This is my Header description</p>
         </Header>
