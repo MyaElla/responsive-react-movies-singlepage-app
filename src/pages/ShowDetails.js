@@ -1,86 +1,87 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import thumb from '../assets/thumb.png'
 import StyledThumbImg from '../components/StyledThumbImg'
 import Cast from './Cast'
 import ShowMore from './ShowMore'
 import RatingStars from './RatingStars'
 
-
 class ShowDetails extends Component {
-    state = {
-        showInfo: null,
-        castList: null,
+  constructor(props) {
+    super(props)
+    this.state = {
+      showInfo: null,
+      castList: null,
     }
+  }
 
+  componentDidMount() {
+    const { match } = this.props
+    const id = match.params.show_id
+    const baseShowUrl = `http://api.tvmaze.com/shows/${id}`
 
+    const apiRequest1 = fetch(baseShowUrl).then(response => response.json())
+    const apiRequest2 = fetch(`${baseShowUrl}/cast`).then(response =>
+      response.json()
+    )
+    const combinedData = []
 
-    componentDidMount() {
+    Promise.all([apiRequest1, apiRequest2])
+      .then(function(values) {
+        combinedData[0] = values[0]
+        combinedData[1] = values[1].slice(0, 5)
+        return combinedData
+      })
+      // eslint-disable-next-line no-shadow
+      .then(combinedData =>
+        this.setState({
+          showInfo: combinedData[0],
+          castList: combinedData[1],
+        })
+      )
+  }
 
-        let id = this.props.match.params.show_id;
-        let baseShowUrl = 'http://api.tvmaze.com/shows/' + id
+  // getImage = showInfo => {
+  //   if (showInfo.image) {
+  //     console.log('>>!!showInfo.image>>', showInfo.image)
+  //     const image = showInfo.image.medium
+  //     return image
+  //   } else {
+  //     return thumb
+  //   }
+  // }
 
+  render() {
+    const { showInfo, castList } = this.state
+    console.log('showInfo RENDER', showInfo)
+    // const thumbImg = showInfo ? showInfo.image[0] : thumb
 
-        let apiRequest1 = fetch(baseShowUrl).then(response => response.json());
-        let apiRequest2 = fetch(`${baseShowUrl}/cast`).then(response => response.json());
-        let combinedData = []
+    const showDetails = showInfo ? (
+      <div className="intro card">
+        <img src={showInfo.image.medium} alt="" />
+        {/* <StyledThumbImg src={this.getImage()} /> */}
+        {/* <StyledThumbImg src={thumbImg} /> */}
+        <div className="show present">
+          <h4>{showInfo.name}</h4>
+          <RatingStars rating={showInfo.rating} />
+          <p>{showInfo.summary}</p>
+        </div>
+        <ShowMore details={showInfo} />
+        <Cast listCast={castList} />
+      </div>
+    ) : (
+      <div className="center">Loading post...</div>
+    )
+    return <div className="container tile">{showDetails}</div>
+  }
+}
 
-
-
-
-
-        Promise.all([apiRequest1, apiRequest2])
-            .then(function (values) {
-                combinedData[0] = values[0];
-                combinedData[1] = values[1].slice(0, 5);
-
-                console.log("apiRequest2", apiRequest2)
-                console.log("combinedData", combinedData)
-                return combinedData
-            })
-            .then(combinedData => this.setState({ 
-                showInfo: combinedData[0],
-                castList: combinedData[1]
-             }))
-  
-    }
-    getImage = (image) => {
-        if (this.state.showInfo.image) {
-            return  image = this.state.showInfo.image.medium
-        } else {
-            return thumb
-        }
-
-    }
-
-    render() {
-        const { showInfo, castList } = this.state
-        console.log("showInfo RENDER", showInfo)
-        // const thumbImg = showInfo ? showInfo.image[0] : thumb
-
-        const showDetails = showInfo ? (
-            <div className="intro card">
-                {/* <img src={showInfo.image.medium} alt=""/> */}
-                    <StyledThumbImg src={this.getImage()} />
-                    {/* <StyledThumbImg src={thumbImg} /> */}
-                <div className="show present">
-                    <h4>{showInfo.name}</h4>
-                    <RatingStars rating={showInfo.rating} />
-                    <p>{showInfo.summary}</p>
-                    
-                </div>
-                <ShowMore details={showInfo} />
-                <Cast listCast={castList} />  
-
-            </div>
-        ) : (
-            <div className="center">Loading post...</div>
-            ) 
-        return (
-            <div className="container tile">
-                {showDetails}
-            </div>
-        )
-    }
+ShowDetails.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      show_id: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
 }
 
 export default ShowDetails

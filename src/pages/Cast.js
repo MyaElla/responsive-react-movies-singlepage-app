@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import StyledCastImgCircle from '../components/StyledCastImgCircle'
 import StyledList from '../components/StyledList'
@@ -6,7 +7,7 @@ import StyledText from '../components/StyledText'
 
 import alvin from '../assets/alvin.jpg'
 
-const Cast = listCast => {
+const Cast = ({ listCast }) => {
   let rowCast
   console.log('listCast', listCast)
 

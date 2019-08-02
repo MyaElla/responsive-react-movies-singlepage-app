@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from 'react'
 import StyledList from '../components/StyledList'
 import StyledListItem from '../components/StyledListItem'
 import StyledText from '../components/StyledText'
 
-const ShowMore = details => {
+const ShowMore = ({ details }) => {
   console.log('showInfoMORE', details)
 
   const rowNetwork = details ? (
