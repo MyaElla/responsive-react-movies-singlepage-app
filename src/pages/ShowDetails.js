@@ -39,6 +39,7 @@ class ShowDetails extends Component {
           castList: combinedData[1],
         })
       )
+      .catch(e => console.log(e))
   }
 
   render() {

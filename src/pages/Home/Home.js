@@ -17,6 +17,7 @@ class Home extends Component {
     super(props)
     this.state = {
       latestReleased: [],
+      isFetching: false,
     }
   }
 
@@ -32,14 +33,18 @@ class Home extends Component {
         console.log('result fetch', data)
         this.setState({
           latestReleased: data.map(x => x.show).slice(0, 18),
+          isFetching: true,
         })
       })
 
       .catch(e => console.log(e))
   }
 
+  // isFetching() {
+  //   this.state.isFetching
+  // }
   render() {
-    const { latestReleased } = this.state
+    const { latestReleased, isFetching } = this.state
     console.log('latestReleased 13', latestReleased[13])
 
     const episodesList = latestReleased.length ? (
@@ -57,7 +62,7 @@ class Home extends Component {
         )
       })
     ) : (
-      <div className="center">No shows to show</div>
+      <h1>{isFetching ? 'Fetching data...' : 'No shows to show'}</h1>
     )
 
     return (
